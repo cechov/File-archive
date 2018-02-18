@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Filarkiv.Models.FileListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="panel-heading">Uploaded files</h2>
+
+<table class="table table-hover table-condensed">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="active">
+                <b>@Html.DisplayFor(modelItem => item.Category)</b>
+            </td>
+            <td class="active"></td>
+
+            @foreach (var file in item.Files)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => file.fileName)
+                </td>
+                <td>
+                    @Html.ActionLink("Download", "downloadFile", "Upload", new { path = file.filePath }, "")
+                </td>
+            </tr>
+        }
+            </tr>
+        }
+</table>
